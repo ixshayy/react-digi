@@ -38,7 +38,7 @@ const FontsData : IFonts[] = [
     {
         id : 7,
         name : "marck-script", 
-        ttf : "./src/assets/fonts/Marck_Script/Marck_Script-Regular.ttf"
+        ttf : "./src/assets/fonts/Marck_Script/MarckScript-Regular.ttf"
     }, 
     {
         id : 8,
