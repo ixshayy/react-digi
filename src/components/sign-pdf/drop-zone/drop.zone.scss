@@ -1,5 +1,22 @@
 .drope-zone-wrapper{
     width: 400px;
     height: 200px;
-    border: 2px solid black;
+    border: 2px dotted grey;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(123, 123, 123, 0.16), 0 3px 6px rgba(123, 123, 123, 0.23);
+
+    .drag-drop-instructions{
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        p{
+            text-align: center;
+            color: grey;
+        }
+    }
 }

@@ -18,7 +18,7 @@ export const PdfViewer: React.FC<IPdfviewerProps> = ({fileData}) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   return (
-    <div>
+    <div className="document-viewer">
       <Document file={fileData} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>

@@ -4,6 +4,8 @@ import "./drop.zone.scss";
 import { pdfjs, Document, Page } from "react-pdf";
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import { GrDownload } from "react-icons/gr";
+
 
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -41,13 +43,14 @@ const DropZone: React.FC<IDropZoneProps> = ({setFileData}) => {
     <>
       <div {...getRootProps()} className="drope-zone-wrapper">
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the files here ...</p>
-        ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
-        )}
+          <div className="drag-drop-instructions">
+            <GrDownload/>
+            <p className="mt-3">Drag 'n' drop some files here</p>
+          </div>
       </div>
     </>
   );
 };
+
+
 export default DropZone;

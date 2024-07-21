@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DropZone from "./drop-zone/drop.zone";
 import { PdfViewer } from "./pdf-viewer/pdf.viewer";
 import "./sign.pdf.scss";
+import { UploadSign } from "./upload-sign/upload.sign";
 
 
 const SignPdf: React.FC = () => {
@@ -9,8 +10,8 @@ const SignPdf: React.FC = () => {
 
   return (
       <div className="sign-pdf-wrapper">
-        <DropZone setFileData={setFileData} />
-        {fileData && <PdfViewer fileData={fileData} />}
+        {fileData ? <PdfViewer fileData={fileData} /> : <DropZone setFileData={setFileData} />}
+        <UploadSign/>
       </div>
   );
 };
