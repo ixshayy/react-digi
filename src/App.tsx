@@ -10,32 +10,32 @@ import SignPdf from './components/sign-pdf/sign.pdf';
 function App() {
 
   const isMounted = useRef(false);
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const loadFonts = async () => {
-  //     if (!isMounted.current) {
+    const loadFonts = async () => {
+      if (!isMounted.current) {
 
-  //       try {
-  //         const fontPromises = FontsData.map((font) => {
-  //           const newFont = new FontFace(font.name, `url(${font.ttf})`);
-  //           return newFont.load().then(() => {
-  //             document.fonts.add(newFont);
-  //           });
-  //         })
+        try {
+          const fontPromises = FontsData.map((font) => {
+            const newFont = new FontFace(font.name, `url(${font.ttf})`);
+            return newFont.load().then(() => {
+              document.fonts.add(newFont);
+            });
+          })
 
-  //         await Promise.all(fontPromises);
+          await Promise.all(fontPromises);
 
-  //       } catch (err) {
-  //         console.error(err);
-  //       }
+        } catch (err) {
+          console.error(err);
+        }
 
-  //       isMounted.current = true;
-  //     }
-  //   }
+        isMounted.current = true;
+      }
+    }
 
-  //   loadFonts();
+    loadFonts();
 
-  // }, [])
+  }, [])
 
   return (<>
     <Header />

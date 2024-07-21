@@ -9,9 +9,8 @@ interface ISignsProps {
 export const Signs: React.FC<ISignsProps> = ({ text }) => {
 
   const [imgsArr, setImgsArr] = useState<JSX.Element[]>([]);
-
-
-
+  const [fonts, setFonts] = useState<string[]>(FontsData.map((data)=>data.name));
+  const [inputText, setInputText] = useState<string>();
 
   const generateSignatureImgs = (): JSX.Element[] => {
 
@@ -45,12 +44,13 @@ export const Signs: React.FC<ISignsProps> = ({ text }) => {
 
 
   useEffect(() => {
-    setImgsArr(generateSignatureImgs());
+    // setImgsArr(generateSignatureImgs());
+    setInputText(text);
   }, [text]);
 
 
   return (<>{imgsArr && <div className="sign-img-wrapper ">
-    {imgsArr.map((item, index) => (<div key={index} className="img-container m-3">{item}</div>))}
+    {fonts.map((font, index) => (<div key={index} className="font-container m-3"><span style={{fontFamily : `"${font}", sans-serif`}}>{inputText}</span></div>))}
   </div>
   }</>)
 }
