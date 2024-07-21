@@ -4,15 +4,13 @@ import { Container } from "react-bootstrap";
 import InputSignText from "./input/input";
 import { Signs } from "./signs/signs";
 
-
 const Type: React.FC = () => {
-  
-    const [inputSign, setInputSign] = useState<string>("");
+  const [inputSign, setInputSign] = useState<string>("");
 
   return (
     <Container className="type-wrapper">
-        <InputSignText setInputSign={setInputSign}/>
-        {inputSign && <Signs text={inputSign}/>}
+      <InputSignText setInputSign={setInputSign} />
+      {inputSign && <Signs text={inputSign} />}
     </Container>
   );
 };

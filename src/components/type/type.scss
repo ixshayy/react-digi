@@ -1,5 +1,6 @@
 .type-wrapper{
     width: 100vw;
     height: 90vh;
-    background: rgb(217, 220, 223);
+    overflow-x: hidden;
+    overflow-y: auto;
 }

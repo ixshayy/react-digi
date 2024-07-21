@@ -1,0 +1,12 @@
+@import './colors.scss';
+
+.primary-btn {
+    background-color: $primaryTheme !important;
+    color: $primaryWhite !important;
+    border: none;
+
+    &:hover {
+        background-color: $primaryTheme !important;
+    }
+}
+

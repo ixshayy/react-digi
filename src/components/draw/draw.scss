@@ -1,14 +1,20 @@
+@import "../styles/colors.scss";
+
+
 .home-wrapper{
-    
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .sign-canva-wrapper{
         position: relative;
-        border: 1px solid black;
-        width : 90%;
-        height: 70%;
-
+        width: 75%;
+        height: 75%;
+        // background-color: $secondaryWhite !important;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                
         .sign-canvas{
             width: 100%;
             height: 100%;
@@ -16,14 +22,20 @@
 
         .color-palette-btn{
             position: absolute;
-            top: 20px;
-            left: -35px;
+            top: 0;
+            left: -45px;
         }
     
         .color-palette-wrapper{
             position: absolute;
-            top: 10px;
-            left: 5px;
+            top: 0;
+            left: 0px;
+        }
+
+        .controls-btn{
+            position: absolute;
+            left: 0;
+            bottom: -50px;
         }
     }
     

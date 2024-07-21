@@ -1,0 +1,10 @@
+@import "../styles/colors.scss";
+
+.header-wrapper{
+    height: 10vh ;
+    background-color: $primaryTheme !important;
+    box-shadow: 0 0px 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+    a{
+        color: white;
+    }
+}

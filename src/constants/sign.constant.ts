@@ -1,0 +1,1 @@
+export const DIGI_SIGN = "digi-sign";

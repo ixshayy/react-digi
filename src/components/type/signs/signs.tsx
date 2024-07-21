@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import FontsData from "../../data/fonts.data";
+import FontsData from "../../../data/fonts.data";
 import "./signs.scss";
 
 interface ISignsProps {
@@ -34,20 +34,13 @@ export const Signs: React.FC<ISignsProps> = ({ text }) => {
     canvas.width = 500;
     canvas.height = 200;
     const ctx = canvas.getContext("2d");
+    console.log("fonts", font);
     if (ctx) {
       ctx.font = `50px ${font}`;
       ctx.fillStyle = "#000";
       ctx.fillText(text, 50, 50);
     }
-
-    // console.log("images : ", canvas.toDataURL("image/png").split(",")[1]);
     return canvas.toDataURL("image/png").split(",")[1];
-    // Convert canvas to a Blob and save it
-    //   canvas.toBlob((blob) => {
-    //     if (blob) {
-    //       saveAs(blob, "sign.png");
-    //     }
-    //   }, "image/png");
   }
 
 
@@ -56,8 +49,8 @@ export const Signs: React.FC<ISignsProps> = ({ text }) => {
   }, [text]);
 
 
-  return (<>{imgsArr && <div className="sign-img-wrapper">
-    {imgsArr.map((item, index) => (<div key={index} className="img-container">{item}</div>))}
+  return (<>{imgsArr && <div className="sign-img-wrapper ">
+    {imgsArr.map((item, index) => (<div key={index} className="img-container m-3">{item}</div>))}
   </div>
   }</>)
 }

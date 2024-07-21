@@ -4,38 +4,40 @@ import { saveAs } from "file-saver";
 import { ColorResult, SketchPicker } from "react-color";
 import { IoIosColorPalette } from "react-icons/io";
 import "./draw.scss";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
+import { DIGI_SIGN } from "../../constants/sign.constant";
 
 const Draw: React.FC = () => {
+  
   const [imageURL, setImageURL] = useState<string | null>(null);
   const signCanvas = useRef<SignatureCanvas | null>(null);
   const [paletteColor, setpaletteColor] = useState<string>("#000");
-  const [isColorPaletteVisibile, setColorPaletteVisibile] =
-    useState<boolean>(false);
-  const [typedName, setTypedName] = useState<string>("");
+  const [isColorPaletteVisibile, setColorPaletteVisibile] = useState<boolean>(false);
 
   useEffect(() => {
-    const font = new FontFace(
-      "signature-font",
-      'url("./src/assets/fonts/AAutoSignature-1GD9j.ttf")'
-    );
-    console.log("font", font);
-    font.load().then(() => {
-      document.fonts.add(font);
-    });
+    const savedSign = localStorage.getItem(DIGI_SIGN);
+    if (savedSign && signCanvas.current) {
+      signCanvas.current.fromDataURL(savedSign);
+    }
   }, []);
+
 
   // Clear canvas
   const clear = () => {
     if (signCanvas.current) {
       signCanvas.current.clear();
+      localStorage.setItem(DIGI_SIGN, "");
     }
   };
 
   // Save canvas
   const save = () => {
     if (signCanvas.current) {
-      setImageURL(signCanvas.current.getTrimmedCanvas().toDataURL("image/png"));
+      const signImg = signCanvas.current
+        .getTrimmedCanvas()
+        .toDataURL("image/png");
+      setImageURL(signImg);
+      localStorage.setItem(DIGI_SIGN, signImg);
     }
   };
 
@@ -56,43 +58,31 @@ const Draw: React.FC = () => {
     setColorPaletteVisibile(!isColorPaletteVisibile);
   };
 
-  const generateSignature = () => {
-    if (signCanvas.current) {
-      signCanvas.current.clear();
-      const context = signCanvas.current.getCanvas().getContext("2d");
-      if (context) {
-        context.font = "100px signature-font";
-        context.fillStyle = paletteColor;
-        context.fillText(typedName, 50, 100); // Adjust positioning as needed
-      }
-    }
-  };
-
   return (
     <Container className="home-wrapper">
-      <div className="sign-canva-wrapper">
+      <Container className="sign-canva-wrapper">
         <SignatureCanvas
           penColor={paletteColor}
           ref={signCanvas}
           canvasProps={{ className: "sign-canvas" }}
         />
         <div className="controls-btn">
-          <button onClick={clear} className="me-2">
+          <Button onClick={clear} className="me-2 primary-btn">
             Clear
-          </button>
-          <button onClick={save} className="me-2">
+          </Button>
+          <Button onClick={save} className="me-2 primary-btn">
             Save
-          </button>
-          <button onClick={download} className="me-2">
+          </Button>
+          <Button onClick={download} className="me-2 primary-btn">
             Download
-          </button>
+          </Button>
         </div>
-        <button
+        <Button
           onClick={handleColorPaletteBtnClick}
-          className="color-palette-btn"
+          className="color-palette-btn primary-btn"
         >
           <IoIosColorPalette />
-        </button>
+        </Button>
         {isColorPaletteVisibile && (
           <SketchPicker
             color={paletteColor}
@@ -100,24 +90,9 @@ const Draw: React.FC = () => {
             className="color-palette-wrapper"
           />
         )}
-        <div className="text-input-wrapper">
-          <input
-            type="text"
-            value={typedName}
-            onChange={(e) => setTypedName(e.target.value)}
-            placeholder="Type your name"
-          />
-          <button
-            onClick={generateSignature}
-            className="generate-signature-btn"
-          >
-            Generate Signature
-          </button>
-        </div>
-      </div>
+      </Container>
     </Container>
   );
 };
-
 
 export default Draw;
